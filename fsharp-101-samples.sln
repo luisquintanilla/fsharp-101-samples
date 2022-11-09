@@ -21,6 +21,10 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "fsharp-interactive", "fshar
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "representing-data", "representing-data\representing-data.fsproj", "{39DBD73C-C9FE-4A7C-B639-14CD04FFAD61}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SomeLib", "unit-testing\SomeLib\SomeLib.fsproj", "{6618AEBF-3FF2-48C8-9D7E-850BE093D798}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SomeLibTests", "unit-testing\SomeLibTests\SomeLibTests.fsproj", "{DFC9B9AF-F0A2-4E6D-8ED0-585EF06A359C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,5 +70,13 @@ Global
 		{39DBD73C-C9FE-4A7C-B639-14CD04FFAD61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39DBD73C-C9FE-4A7C-B639-14CD04FFAD61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39DBD73C-C9FE-4A7C-B639-14CD04FFAD61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6618AEBF-3FF2-48C8-9D7E-850BE093D798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6618AEBF-3FF2-48C8-9D7E-850BE093D798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6618AEBF-3FF2-48C8-9D7E-850BE093D798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6618AEBF-3FF2-48C8-9D7E-850BE093D798}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFC9B9AF-F0A2-4E6D-8ED0-585EF06A359C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFC9B9AF-F0A2-4E6D-8ED0-585EF06A359C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFC9B9AF-F0A2-4E6D-8ED0-585EF06A359C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFC9B9AF-F0A2-4E6D-8ED0-585EF06A359C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

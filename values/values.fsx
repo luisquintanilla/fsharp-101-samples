@@ -13,7 +13,7 @@ true
 (1.0, 3.0)
 
 // List value
-["Learn F#";"Build app";"Profit!"]
+[ "Learn F#"; "Build app"; "Profit!" ]
 
 // Lambda expression / Anonymous function value
 fun input -> input / 3
@@ -27,12 +27,12 @@ let luckyNumber = 13
 
 let coordinates = (1.0, 3.0)
 
-let toDoList = ["Learn F#";"Build app";"Profit!"]
+let toDoList = [ "Learn F#"; "Build app"; "Profit!" ]
 
 let divideByThree input = input / 3
 
 (* EXPLICIT TYPE ANNOTATIONS*)
-let (luckyNumberString:string) = "13"
+let (luckyNumberString: string) = "13"
 
 (* UPDATING VALUES *)
 
