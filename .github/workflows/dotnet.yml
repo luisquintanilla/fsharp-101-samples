@@ -9,20 +9,115 @@ on:
   pull_request:
     branches: [ "develop" ]
 
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: Setup .NET
+#       uses: actions/setup-dotnet@v3
+#       with:
+#         dotnet-version: 7.0.x
+#     - name: Restore dependencies
+#       run: dotnet restore
+#     - name: Build
+#       run: dotnet build --no-restore
+#     - name: Test
+#       run: dotnet test --no-build --verbosity normal
+
 jobs:
-  build:
-
+  dotnet:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
+#     needs:
+#       - build
+      # - dotnet-format
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 7.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/allure-prep
+#       - uses: ./.github/actions/switch-network
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        if: always()
+        with:
+          dotnet-version: 7.0.x
+      - name: Print dotnet version
+        if: always()
+        run: dotnet --version
+      - name: Restore dependencies
+        if: always()
+        run: dotnet restore
+      # - name: dotnet - format check
+      #   if: always()
+      #   run: |
+      #     run: dotnet tool update -g dotnet-format
+      #     dotnet-format --check
+      - name: Build
+        if: always()
+        run: dotnet build --no-restore
+      - name: Test
+        timeout-minutes: 15
+        if: always()
+        run: dotnet test --no-build --verbosity normal
+
+  environment-data:
+    runs-on: ubuntu-latest
+    if: always()
+    needs:
+#       - python
+#       - node-mocha
+#       - node-cucumber
+#       - node-nightwatch
+#       - golang
+      - dotnet
+#       - jdk
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/allure-prep
+      - uses: ./.github/actions/switch-network
+      - uses: ./.github/actions/allure-environment-data
+        if: always()
+      - uses: ./.github/actions/allure-upload
+        if: always()
+        with:
+          folder-name: report/allure-results
+
+  allure:
+    runs-on: ubuntu-latest
+    if: always()
+    needs: environment-data
+    steps:
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v3
+
+      - name: Get Allure history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      # - name: Allure Report with history
+      #   uses: simple-elf/allure-report-action@v1.5
+      #   if: always()
+
+      - name: Allure Report action from marketplace
+        uses: neonlabsorg/allure-report-action@master
+        if: always()
+        with:
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+          keep_reports: 25
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history

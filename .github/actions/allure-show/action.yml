@@ -1,0 +1,9 @@
+name: Upload Allure
+description: Allure installation and folders
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        ls report/allure-results
+        # allure --version
+      shell: bash
