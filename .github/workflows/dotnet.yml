@@ -87,7 +87,7 @@ jobs:
   allure:
     runs-on: ubuntu-latest
     if: always()
-#     needs: environment-data
+    needs: environment-data
     steps:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v3
