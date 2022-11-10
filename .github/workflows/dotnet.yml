@@ -14,9 +14,6 @@ jobs:
   dotnet:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-#     needs:
-#       - build
-      # - dotnet-format
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/allure-prep
@@ -44,24 +41,14 @@ jobs:
         timeout-minutes: 15
         if: always()
         run: dotnet test --no-build --verbosity normal
-
-  environment-data:
-    runs-on: ubuntu-latest
-    if: always()
-    needs:
-#       - python
-#       - node-mocha
-#       - node-cucumber
-#       - node-nightwatch
-#       - golang
-      - dotnet
-#       - jdk
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/allure-prep
-#       - uses: ./.github/actions/switch-network
-#       - uses: ./.github/actions/allure-environment-data
-#         if: always()
+      - name: Checking test results
+        if: always()
+        run: |
+          pwd
+          echo "report"
+          ls report
+          echo "report/allure-results"
+          ls report/allure-results
       - uses: ./.github/actions/allure-upload
         if: always()
         with:
@@ -70,7 +57,7 @@ jobs:
   allure:
     runs-on: ubuntu-latest
     if: always()
-    needs: environment-data
+    needs: dotnet
     steps:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v3
