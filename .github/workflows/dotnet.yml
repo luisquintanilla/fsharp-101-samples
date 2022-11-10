@@ -77,8 +77,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/allure-prep
       - uses: ./.github/actions/switch-network
-      - uses: ./.github/actions/allure-environment-data
-        if: always()
+#       - uses: ./.github/actions/allure-environment-data
+#         if: always()
       - uses: ./.github/actions/allure-upload
         if: always()
         with:
@@ -87,7 +87,7 @@ jobs:
   allure:
     runs-on: ubuntu-latest
     if: always()
-    needs: environment-data
+#     needs: environment-data
     steps:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v3
@@ -116,7 +116,7 @@ jobs:
 
       - name: Deploy report to Github Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v2
+        uses: peaceiris/actions-gh-pages@v3
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
