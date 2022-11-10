@@ -76,7 +76,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/allure-prep
-      - uses: ./.github/actions/switch-network
+#       - uses: ./.github/actions/switch-network
 #       - uses: ./.github/actions/allure-environment-data
 #         if: always()
       - uses: ./.github/actions/allure-upload
