@@ -1,7 +1,7 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: .NET
+name: .NET 7.0
 
 on:
   push:
@@ -88,7 +88,8 @@ jobs:
       #   if: always()
 
       - name: Allure Report action from marketplace
-        uses: neonlabsorg/allure-report-action@master
+        # uses: neonlabsorg/allure-report-action@master
+        uses: simple-elf/allure-report-action@master
         if: always()
         with:
           allure_results: allure-results
@@ -99,7 +100,7 @@ jobs:
 
       - name: Deploy report to Github Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v2
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
