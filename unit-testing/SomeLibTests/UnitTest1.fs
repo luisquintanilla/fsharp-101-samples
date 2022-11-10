@@ -1,3 +1,4 @@
+[<NUnit.Framework.TestFixture>]
 module SampleTests
 
 open NUnit.Framework

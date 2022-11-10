@@ -701,3 +701,6 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/fsharp,csharp,visualstudiocode,visualstudio,rider,monodevelop,powershell
 
 .idea/**/
+
+allure-results/**
+report/**
