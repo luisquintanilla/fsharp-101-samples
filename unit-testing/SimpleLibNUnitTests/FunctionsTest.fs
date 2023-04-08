@@ -35,9 +35,11 @@ let factorialTestData () = //: IEnumerable<TestCaseData> =
 
 
 
-[<Test>]
+// [<Test>]
 [<AllureName("one more NUnit test")>]
-let oneMoreTest () = Assert.AreEqual(1, 1)
+let oneMoreTest () =
+    Assert.AreEqual(1, 1)
+    "1".ShouldBe("2")
 
 
 // variations
@@ -51,4 +53,4 @@ let oneMoreTest () = Assert.AreEqual(1, 1)
 let factorialTest (number: int, expectedResult: int) =
     let actualResult = FuncLib.factorial number
     AreEqual(expectedResult, actualResult, $"Expected = {expectedResult}, actual = {actualResult}")
-    actualResult.ShouldBe(expectedResult)
+    actualResult.ShouldBe(expectedResult + 1)
