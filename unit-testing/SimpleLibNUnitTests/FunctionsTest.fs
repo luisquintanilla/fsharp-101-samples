@@ -17,6 +17,7 @@ open NUnit.Allure.Attributes
 open NUnit.Allure.Core
 open NUnit.Framework
 open NUnit.Framework.Constraints
+open Shouldly
 
 open type NUnit.Framework.Assert
 open SimpleLib
@@ -50,3 +51,4 @@ let oneMoreTest () = Assert.AreEqual(1, 1)
 let factorialTest (number: int, expectedResult: int) =
     let actualResult = FuncLib.factorial number
     AreEqual(expectedResult, actualResult, $"Expected = {expectedResult}, actual = {actualResult}")
+    actualResult.ShouldBe(expectedResult)
