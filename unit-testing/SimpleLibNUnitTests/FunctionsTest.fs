@@ -49,6 +49,7 @@ let oneMoreTest () =
 // [<TestCaseSource(typeof< testData>, "factorialTestData" )>]
 // [<TestCaseSource(typeof<testData>, nameof testData.factorialTestData)>]
 [<TestCaseSource(nameof factorialTestData)>]
+[ParallelizableAttribute(ParallelScope.All)]
 // [<TestCaseSource(typeof SimpleLibNUnitTests, nameof factorialTestData )>]
 [<Description("NUnit parameterized test")>]
 [<AllureName("a parameterized NUnit test")>]
