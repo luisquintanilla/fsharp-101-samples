@@ -17,6 +17,7 @@ open NUnit.Allure.Attributes
 open NUnit.Allure.Core
 open NUnit.Framework
 open NUnit.Framework.Constraints
+open Shouldly
 
 open type NUnit.Framework.Assert
 open SimpleLib
@@ -36,7 +37,10 @@ let factorialTestData () = //: IEnumerable<TestCaseData> =
 
 [<Test>]
 [<AllureName("one more NUnit test")>]
-let oneMoreTest () = Assert.AreEqual(1, 1)
+let oneMoreTest () =
+    Assert.AreEqual(1, 1)
+    [AllureStepAttribute("A Shouldly assertion")]
+    "1".ShouldBe("2")
 
 
 // variations
@@ -45,8 +49,12 @@ let oneMoreTest () = Assert.AreEqual(1, 1)
 // [<TestCaseSource(typeof< testData>, "factorialTestData" )>]
 // [<TestCaseSource(typeof<testData>, nameof testData.factorialTestData)>]
 [<TestCaseSource(nameof factorialTestData)>]
+// [ParallelizableAttribute(ParallelScope.All)]
 // [<TestCaseSource(typeof SimpleLibNUnitTests, nameof factorialTestData )>]
 [<Description("NUnit parameterized test")>]
+[<AllureName("a parameterized NUnit test")>]
 let factorialTest (number: int, expectedResult: int) =
     let actualResult = FuncLib.factorial number
     AreEqual(expectedResult, actualResult, $"Expected = {expectedResult}, actual = {actualResult}")
+    [AllureStepAttribute("A Shouldly assertion")]
+    actualResult.ShouldBe(expectedResult + 1)
