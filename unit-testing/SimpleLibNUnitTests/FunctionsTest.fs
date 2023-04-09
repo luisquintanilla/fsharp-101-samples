@@ -53,5 +53,5 @@ let oneMoreTest () =
 let factorialTest (number: int, expectedResult: int) =
     let actualResult = FuncLib.factorial number
     AreEqual(expectedResult, actualResult, $"Expected = {expectedResult}, actual = {actualResult}")
-    [AllureStep("A Shouldly assertion")]
+    [AllureStepAttribute("A Shouldly assertion")]
     actualResult.ShouldBe(expectedResult + 1)
