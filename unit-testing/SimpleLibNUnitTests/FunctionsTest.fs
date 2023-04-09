@@ -39,6 +39,7 @@ let factorialTestData () = //: IEnumerable<TestCaseData> =
 [<AllureName("one more NUnit test")>]
 let oneMoreTest () =
     Assert.AreEqual(1, 1)
+    [AllureStepAttribute("A Shouldly assertion")]
     "1".ShouldBe("2")
 
 
