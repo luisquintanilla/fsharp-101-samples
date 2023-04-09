@@ -15,6 +15,8 @@ open NUnit.Allure.Attributes
 open NUnit.Allure.Core
 open NUnit.Framework
 open NUnit.Framework.Constraints
+open Shouldly
+
 
 open type NUnit.Framework.Assert
 open SimpleLib
@@ -24,3 +26,5 @@ open SimpleLib
 let someTest () =
     let n = 3
     AreEqual(n * n, FuncLib.square n)
+    [AllureStepAttribute("A Shouldly assertion")]
+    (n * n).ShouldBe(FuncLib.square n)

@@ -35,7 +35,7 @@ let factorialTestData () = //: IEnumerable<TestCaseData> =
 
 
 
-// [<Test>]
+[<Test>]
 [<AllureName("one more NUnit test")>]
 let oneMoreTest () =
     Assert.AreEqual(1, 1)
@@ -51,6 +51,7 @@ let oneMoreTest () =
 [<TestCaseSource(nameof factorialTestData)>]
 // [<TestCaseSource(typeof SimpleLibNUnitTests, nameof factorialTestData )>]
 [<Description("NUnit parameterized test")>]
+[<AllureName("a parameterized NUnit test")>]
 let factorialTest (number: int, expectedResult: int) =
     let actualResult = FuncLib.factorial number
     AreEqual(expectedResult, actualResult, $"Expected = {expectedResult}, actual = {actualResult}")
