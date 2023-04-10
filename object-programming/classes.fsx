@@ -1,9 +1,9 @@
 (** CLASSES **)
 type Repo(name: string, stars: int) =
-    
+
     // Private properties
     let baseUrl = "https://github.com"
-    
+
     // Private method
     let incrementStarsBy stars n = stars + n
 
@@ -20,7 +20,9 @@ type Repo(name: string, stars: int) =
     // Methods
     member _.GetBaseUrl() = $"{baseUrl}"
     member this.GetRepoUrl() = $"{baseUrl}/{this.Name}"
-    member this.IncrementStarsBy(n) = this.Stars <- incrementStarsBy this.Stars n //takes parameters
+
+    member this.IncrementStarsBy(n) =
+        this.Stars <- incrementStarsBy this.Stars n //takes parameters
 
 // Static members
 Repo.PrintHelp()

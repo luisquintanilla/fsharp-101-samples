@@ -8,9 +8,7 @@ let getHtml (source: string) =
         return html
     }
 
-"https://docs.microsoft.com/dotnet/fsharp"
-|> getHtml
-|> Async.RunSynchronously
+"https://docs.microsoft.com/dotnet/fsharp" |> getHtml |> Async.RunSynchronously
 
 // Run multiple async in parallel
 let documents =
@@ -18,16 +16,10 @@ let documents =
       "https://docs.microsoft.com/dotnet/fsharp/tutorials/asynchronous-and-concurrent-programming/async"
       "https://docs.microsoft.com/dotnet/fsharp/language-reference/asynchronous-workflows" ]
 
-documents
-|> List.map getHtml
-|> Async.Parallel
-|> Async.RunSynchronously
+documents |> List.map getHtml |> Async.Parallel |> Async.RunSynchronously
 
 // Run in order
-documents
-|> List.map getHtml
-|> Async.Sequential
-|> Async.RunSynchronously
+documents |> List.map getHtml |> Async.Sequential |> Async.RunSynchronously
 
 (*TASK INTEROP*)
 open System.Net.Http
